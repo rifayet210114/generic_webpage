@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script>
+        // Apply theme immediately to prevent layout flashes (defaults to Light Mode first)
+        const theme = localStorage.getItem('theme') || 'light';
+        document.documentElement.setAttribute('data-theme', theme);
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Case studies of web applications and design systems we have built for startups.">
+    <title>Case Studies Showcase | Boutique Software Studio</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <!-- Main Style -->
+    <link rel="stylesheet" href="../style.css">
+    <style>
+        /* Specific adjustments to load assets from parent folders */
+        .portfolio-header {
+            padding: 10rem 0 4rem 0;
+            background-color: var(--color-bg-darkest);
+        }
+        .back-home-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 2rem;
+            font-size: 0.9rem;
+            color: var(--color-text-secondary);
+            font-weight: 600;
+        }
+        .back-home-link svg {
+            width: 16px;
+            height: 16px;
+            transition: transform var(--transition-fast);
+        }
+        .back-home-link:hover {
+            color: var(--color-text-primary);
+        }
+        .back-home-link:hover svg {
+            transform: translateX(-4px);
+        }
+        .portfolio-showcase-grid {
+            grid-template-columns: repeat(2, 1fr);
+            margin-bottom: 8rem;
+        }
+        @media (max-width: 768px) {
+            .portfolio-showcase-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Custom Cursor -->
+    <div class="custom-cursor" id="customCursor"></div>
+    <div class="custom-cursor-follower" id="customCursorFollower"></div>
+
+    <!-- Header -->
+    <header class="main-header sticky" id="mainHeader">
+        <div class="header-container">
+            <a href="../index.html#home" class="logo" id="logoLink" aria-label="Go to home">BSL<span class="logo-dot">.</span></a>
+            
+            <nav class="nav-menu" id="navMenu">
+                <ul class="nav-list">
+                    <li class="nav-item"><a href="../index.html#home" class="nav-link" id="navHome">Home</a></li>
+                    <li class="nav-item dropdown-trigger active" id="navPortfolioContainer">
+                        <a href="#" class="nav-link active" id="navPortfolio">Portfolio</a>
+                        <div class="dropdown-menu" id="portfolioDropdown">
+                            <a href="index.html" class="dropdown-item" id="dropProj1">
+                                <span class="drop-num">01</span> My Portfolio
+                            </a>
+                            <a href="../index.html#projects" class="dropdown-item" id="dropProj2">
+                                <span class="drop-num">02</span> My 2nd Project
+                            </a>
+                            <a href="../index.html#projects" class="dropdown-item" id="dropProj3">
+                                <span class="drop-num">03</span> My 3rd Project
+                            </a>
+                            <a href="../index.html#projects" class="dropdown-item" id="dropProj4">
+                                <span class="drop-num">04</span> My 4th Project
+                            </a>
+                            <a href="../index.html#projects" class="dropdown-item" id="dropProj5">
+                                <span class="drop-num">05</span> My 5th Project
+                            </a>
+                        </div>
+                    </li>
+                    <li class="nav-item"><a href="../index.html#projects" class="nav-link" id="navProjects">Projects</a></li>
+                    <li class="nav-item"><a href="../index.html#services" class="nav-link" id="navServices">Services</a></li>
+                    <li class="nav-item"><a href="../index.html#about" class="nav-link" id="navAbout">About</a></li>
+                    <li class="nav-item"><a href="../index.html#contact" class="nav-link" id="navContact">Contact</a></li>
+                </ul>
+            </nav>
+
+            <div class="header-actions">
+                <button class="theme-toggle magnetic" id="themeToggleBtn" aria-label="Toggle theme">
+                    <svg class="theme-icon sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                    <svg class="theme-icon moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                </button>
+                <a href="../index.html#contact" class="btn btn-outline btn-sm magnetic" id="headerCtaBtn">Let's Talk</a>
+                <button class="hamburger-menu" id="hamburgerBtn" aria-label="Toggle menu">
+                    <span class="bar bar-1"></span>
+                    <span class="bar bar-2"></span>
+                    <span class="bar bar-3"></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Portfolio Header -->
+        <section class="portfolio-header">
+            <div class="container">
+                <a href="../index.html" class="back-home-link magnetic" id="backToHome">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="19" y1="12" x2="5" y2="12"></line>
+                        <polyline points="12 19 5 12 12 5"></polyline>
+                    </svg>
+                    <span>Back to Home</span>
+                </a>
+                <span class="section-subtitle">CASE STUDIES</span>
+                <h1 class="section-title text-gradient">Real products we've designed & built</h1>
+            </div>
+        </section>
+
+        <!-- Portfolio Showcase Items -->
+        <section class="portfolio-grid-section">
+            <div class="container">
+                <div class="grid portfolio-showcase-grid">
+                    <!-- Project item 1 -->
+                    <div class="project-card scroll-reveal revealed" id="portItem1">
+                        <div class="project-img-wrapper">
+                            <div class="project-img-placeholder">
+                                <div class="geometric-pattern pat-1"></div>
+                            </div>
+                            <div class="project-overlay">
+                                <span class="project-tag">FINTECH • DASHBOARD</span>
+                            </div>
+                        </div>
+                        <div class="project-info">
+                            <h3 class="project-card-title">Vortex Ledger Dashboard</h3>
+                            <p class="project-card-desc">An executive financial analytics dashboard rendering real-time market feeds at 60fps for quantitative hedge funds.</p>
+                        </div>
+                    </div>
+
+                    <!-- Project item 2 -->
+                    <div class="project-card scroll-reveal revealed" id="portItem2">
+                        <div class="project-img-wrapper">
+                            <div class="project-img-placeholder">
+                                <div class="geometric-pattern pat-2"></div>
+                            </div>
+                            <div class="project-overlay">
+                                <span class="project-tag">AI SYSTEMS • INFRASTRUCTURE</span>
+                            </div>
+                        </div>
+                        <div class="project-info">
+                            <h3 class="project-card-title">Aegis AI Agent</h3>
+                            <p class="project-card-desc">A developer CLI tool that automates security audits, identifying secret leaks and dependency vulnerabilities in pipelines.</p>
+                        </div>
+                    </div>
+
+                    <!-- Project item 3 -->
+                    <div class="project-card scroll-reveal revealed" id="portItem3">
+                        <div class="project-img-wrapper">
+                            <div class="project-img-placeholder">
+                                <div class="geometric-pattern pat-3"></div>
+                            </div>
+                            <div class="project-overlay">
+                                <span class="project-tag">COMMERCE • DESIGN SYSTEMS</span>
+                            </div>
+                        </div>
+                        <div class="project-info">
+                            <h3 class="project-card-title">Solas Headless Shop</h3>
+                            <p class="project-card-desc">A modern e-commerce platform built with static page generators, custom cart models, and secure Stripe payment routing.</p>
+                        </div>
+                    </div>
+
+                    <!-- Project item 4 -->
+                    <div class="project-card scroll-reveal revealed" id="portItem4">
+                        <div class="project-img-wrapper">
+                            <div class="project-img-placeholder">
+                                <div class="geometric-pattern pat-1"></div>
+                            </div>
+                            <div class="project-overlay">
+                                <span class="project-tag">API DEV • CLOUD PLATFORM</span>
+                            </div>
+                        </div>
+                        <div class="project-info">
+                            <h3 class="project-card-title">Vesper Gateway v2</h3>
+                            <p class="project-card-desc">A high-performance WebSocket proxy routing geolocated web request streams with latency below 5ms.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="main-footer" id="mainFooter">
+        <div class="container footer-container">
+            <div class="footer-bottom">
+                <p class="copyright">&copy; 2026 Bespoke Software Labs LLC. All rights reserved.</p>
+                <div class="footer-bottom-links">
+                    <a href="../index.html#home">Home Page</a>
+                    <a href="#">Privacy Policy</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Main JavaScript -->
+    <script src="../script.js"></script>
+</body>
+</html>

@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script>
+        // Apply theme immediately to prevent layout flashes (defaults to Light Mode first)
+        const theme = localStorage.getItem('theme') || 'light';
+        document.documentElement.setAttribute('data-theme', theme);
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Design-focused software agency building fast frontends, clean backend systems, and custom database integrations.">
+    <title>Bespoke Software Engineering & Interface Design | Studio</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <!-- Main Style -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Custom Cursor -->
+    <div class="custom-cursor" id="customCursor"></div>
+    <div class="custom-cursor-follower" id="customCursorFollower"></div>
+
+    <!-- Header -->
+    <header class="main-header" id="mainHeader">
+        <div class="header-container">
+            <a href="#home" class="logo" id="logoLink" aria-label="Go to top">BSL<span class="logo-dot">.</span></a>
+            
+            <nav class="nav-menu" id="navMenu">
+                <ul class="nav-list">
+                    <li class="nav-item"><a href="#home" class="nav-link active" id="navHome">Home</a></li>
+                    <li class="nav-item dropdown-trigger" id="navPortfolioContainer">
+                        <a href="#" class="nav-link" id="navPortfolio">Portfolio</a>
+                        <div class="dropdown-menu" id="portfolioDropdown">
+                            <a href="personal-portfolio/" class="dropdown-item" id="dropProj1" target="_blank" rel="noopener noreferrer">
+                                <span class="drop-num">01</span> My Portfolio
+                            </a>
+                            <a href="#" class="dropdown-item" id="dropProj2">
+                                <span class="drop-num">02</span> My 2nd Project
+                            </a>
+                            <a href="#" class="dropdown-item" id="dropProj3">
+                                <span class="drop-num">03</span> My 3rd Project
+                            </a>
+                            <a href="#" class="dropdown-item" id="dropProj4">
+                                <span class="drop-num">04</span> My 4th Project
+                            </a>
+                            <a href="#" class="dropdown-item" id="dropProj5">
+                                <span class="drop-num">05</span> My 5th Project
+                            </a>
+                        </div>
+                    </li>
+                    <li class="nav-item"><a href="#projects" class="nav-link" id="navProjects">Projects</a></li>
+                    <li class="nav-item"><a href="#services" class="nav-link" id="navServices">Services</a></li>
+                    <li class="nav-item"><a href="#about" class="nav-link" id="navAbout">About</a></li>
+                    <li class="nav-item"><a href="#contact" class="nav-link" id="navContact">Contact</a></li>
+                </ul>
+            </nav>
+
+            <div class="header-actions">
+                <button class="theme-toggle magnetic" id="themeToggleBtn" aria-label="Toggle theme">
+                    <svg class="theme-icon sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                    <svg class="theme-icon moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                </button>
+                <a href="#contact" class="btn btn-outline btn-sm magnetic" id="headerCtaBtn">Let's Talk</a>
+                <button class="hamburger-menu" id="hamburgerBtn" aria-label="Toggle menu">
+                    <span class="bar bar-1"></span>
+                    <span class="bar bar-2"></span>
+                    <span class="bar bar-3"></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero-section" id="home">
+            <div class="hero-bg-shapes">
+                <div class="floating-shape shape-1"></div>
+                <div class="floating-shape shape-2"></div>
+                <div class="floating-shape shape-3"></div>
+            </div>
+            <div class="container hero-container">
+                <div class="hero-content">
+                    <span class="hero-badge scroll-reveal" id="heroBadge">WE BUILD FAST SOFTWARE</span>
+                    <h1 class="hero-title scroll-reveal" id="heroTitle">
+                        We build fast, bespoke <br>
+                        <span class="text-gradient">web apps for scaling startups</span>
+                    </h1>
+                    <p class="hero-description scroll-reveal" id="heroDesc">
+                        We are a small team of developers and designers. We build highly responsive frontends, clean backend systems, and custom database integrations that load instantly and are easy to maintain.
+                    </p>
+                    <div class="hero-actions scroll-reveal" id="heroActions">
+                        <a href="#contact" class="btn btn-primary magnetic" id="heroPrimaryCta">
+                            <span>Let's build something</span>
+                            <svg class="btn-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <line x1="5" y1="12" x2="19" y2="12"></line>
+                                <polyline points="12 5 19 12 12 19"></polyline>
+                            </svg>
+                        </a>
+                        <a href="#projects" class="btn btn-secondary btn-outline magnetic" id="heroSecondaryCta">
+                            <span>See our work</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-scroll-indicator" id="heroScrollIndicator">
+                <span class="mouse-icon">
+                    <span class="mouse-wheel"></span>
+                </span>
+                <span class="scroll-text">Scroll Down</span>
+            </div>
+        </section>
+
+        <!-- Why Choose Us Section -->
+        <section class="why-us-section" id="about">
+            <div class="container">
+                <div class="section-header text-center">
+                    <span class="section-subtitle scroll-reveal">WHAT WE BELIEVE</span>
+                    <h2 class="section-title scroll-reveal" id="whyChooseUsTitle">No bloated code, no templates. Just clean engineering.</h2>
+                </div>
+                <div class="grid why-us-grid">
+                    <!-- Card 1 -->
+                    <div class="why-card scroll-reveal" id="whyCard1">
+                        <div class="why-card-glow"></div>
+                        <div class="why-card-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"></polygon>
+                            </svg>
+                        </div>
+                        <h3 class="why-card-title">Focused UI/UX</h3>
+                        <p class="why-card-desc">We design layouts that are easy to navigate and respect the user's attention. Every animation has a functional purpose—no useless gimmicks.</p>
+                    </div>
+                    <!-- Card 2 -->
+                    <div class="why-card scroll-reveal" id="whyCard2">
+                        <div class="why-card-glow"></div>
+                        <div class="why-card-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+                                <polyline points="2 17 12 22 22 17"></polyline>
+                                <polyline points="2 12 12 17 22 12"></polyline>
+                            </svg>
+                        </div>
+                        <h3 class="why-card-title">Solid Infrastructure</h3>
+                        <p class="why-card-desc">We use modern, reliable tech stacks. We write clean, secure code that handles spikes in traffic and is easy for your team to inherit.</p>
+                    </div>
+                    <!-- Card 3 -->
+                    <div class="why-card scroll-reveal" id="whyCard3">
+                        <div class="why-card-glow"></div>
+                        <div class="why-card-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
+                                <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
+                                <line x1="12" y1="22.08" x2="12" y2="12"></line>
+                            </svg>
+                        </div>
+                        <h3 class="why-card-title">Fast Integrations</h3>
+                        <p class="why-card-desc">Whether it's Stripe payments, custom database structures, or AI model APIs, we connect your systems without slowing down the page speed.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Featured Projects Section -->
+        <section class="projects-section" id="projects">
+            <div class="container">
+                <div class="section-header-flex">
+                    <div>
+                        <span class="section-subtitle scroll-reveal">CASE STUDIES</span>
+                        <h2 class="section-title scroll-reveal" id="projectsSectionTitle">Real products we've built</h2>
+                    </div>
+                    <div class="scroll-reveal">
+                        <a href="portfolio/index.html" class="btn btn-secondary btn-outline magnetic" id="viewAllProjectsBtn">
+                            <span>See All Work</span>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="grid projects-grid">
+                    <!-- Project 1 -->
+                    <div class="project-card scroll-reveal" id="projectCard1">
+                        <div class="project-img-wrapper">
+                            <div class="project-img-placeholder">
+                                <div class="geometric-pattern pat-1"></div>
+                            </div>
+                            <div class="project-overlay">
+                                <span class="project-tag">FINTECH • DASHBOARD</span>
+                            </div>
+                        </div>
+                        <div class="project-info">
+                            <h3 class="project-card-title">Vortex Ledger Dashboard</h3>
+                            <p class="project-card-desc">A real-time trading dashboard built for a quantitative hedge fund. Renders millions of ticks per second using canvas rendering.</p>
+                            <a href="#" class="project-link magnetic" id="projectLink1">
+                                <span>Explore Case Study</span>
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <line x1="7" y1="17" x2="17" y2="7"></line>
+                                    <polyline points="7 7 17 7 17 17"></polyline>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Project 2 -->
+                    <div class="project-card scroll-reveal" id="projectCard2">
+                        <div class="project-img-wrapper">
+                            <div class="project-img-placeholder">
+                                <div class="geometric-pattern pat-2"></div>
+                            </div>
+                            <div class="project-overlay">
+                                <span class="project-tag">AI SYSTEMS • INFRASTRUCTURE</span>
+                            </div>
+                        </div>
+                        <div class="project-info">
+                            <h3 class="project-card-title">Aegis CI Agent</h3>
+                            <p class="project-card-desc">A CLI-first security tool that scans git commits for secret leaks and dependencies vulnerabilities before they hit production.</p>
+                            <a href="#" class="project-link magnetic" id="projectLink2">
+                                <span>Explore Case Study</span>
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <line x1="7" y1="17" x2="17" y2="7"></line>
+                                    <polyline points="7 7 17 7 17 17"></polyline>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Project 3 -->
+                    <div class="project-card scroll-reveal" id="projectCard3">
+                        <div class="project-img-wrapper">
+                            <div class="project-img-placeholder">
+                                <div class="geometric-pattern pat-3"></div>
+                            </div>
+                            <div class="project-overlay">
+                                <span class="project-tag">COMMERCE • DESIGN SYSTEMS</span>
+                            </div>
+                        </div>
+                        <div class="project-info">
+                            <h3 class="project-card-title">Solas Headless Shop</h3>
+                            <p class="project-card-desc">A modern headless e-commerce store with static page generation. Page transitions are instant, and checkout takes seconds.</p>
+                            <a href="#" class="project-link magnetic" id="projectLink3">
+                                <span>Explore Case Study</span>
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <line x1="7" y1="17" x2="17" y2="7"></line>
+                                    <polyline points="7 7 17 7 17 17"></polyline>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Services Section -->
+        <section class="services-section" id="services">
+            <div class="container">
+                <div class="section-header text-center">
+                    <span class="section-subtitle scroll-reveal">WHAT WE DO</span>
+                    <h2 class="section-title scroll-reveal" id="servicesTitle">Capabilities we bring to your team</h2>
+                </div>
+                
+                <div class="grid services-grid">
+                    <!-- Service 1 -->
+                    <div class="service-card scroll-reveal" id="service1">
+                        <div class="service-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <polygon points="12 2 22 8.5 22 15.5 12 22 2 15.5 2 8.5 12 2"></polygon>
+                                <polyline points="2 8.5 12 15 22 8.5"></polyline>
+                                <line x1="12" y1="15" x2="12" y2="22"></line>
+                            </svg>
+                        </div>
+                        <h3 class="service-card-title">Frontend Engineering</h3>
+                        <p class="service-card-desc">Responsive layouts built with optimized vanilla code, smooth animations, and zero framework bloat.</p>
+                    </div>
+
+                    <!-- Service 2 -->
+                    <div class="service-card scroll-reveal" id="service2">
+                        <div class="service-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+                                <path d="M2 12h20"></path>
+                            </svg>
+                        </div>
+                        <h3 class="service-card-title">Product Design</h3>
+                        <p class="service-card-desc">Figma prototypes, visual design systems, and UX flows focused on clarity and ease of use.</p>
+                    </div>
+
+                    <!-- Service 3 -->
+                    <div class="service-card scroll-reveal" id="service3">
+                        <div class="service-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <rect x="2" y="2" width="20" height="8" rx="2" ry="2"></rect>
+                                <rect x="2" y="14" width="20" height="8" rx="2" ry="2"></rect>
+                                <line x1="6" y1="6" x2="6.01" y2="6"></line>
+                                <line x1="6" y1="18" x2="6.01" y2="18"></line>
+                            </svg>
+                        </div>
+                        <h3 class="service-card-title">API & Backend Systems</h3>
+                        <p class="service-card-desc">Fast, secure REST or GraphQL endpoints in Node.js or Go, backed by stable relational databases.</p>
+                    </div>
+
+                    <!-- Service 4 -->
+                    <div class="service-card scroll-reveal" id="service4">
+                        <div class="service-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <polyline points="16 18 22 12 16 6"></polyline>
+                                <polyline points="8 6 2 12 8 18"></polyline>
+                            </svg>
+                        </div>
+                        <h3 class="service-card-title">Third-Party Integrations</h3>
+                        <p class="service-card-desc">Syncing Stripe, Salesforce, HubSpot, or custom databases with secure and verified endpoints.</p>
+                    </div>
+
+                    <!-- Service 5 -->
+                    <div class="service-card scroll-reveal" id="service5">
+                        <div class="service-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+                            </svg>
+                        </div>
+                        <h3 class="service-card-title">AI Integration</h3>
+                        <p class="service-card-desc">Adding LLMs, vector database searches, and smart content generation directly into your existing software.</p>
+                    </div>
+
+                    <!-- Service 6 -->
+                    <div class="service-card scroll-reveal" id="service6">
+                        <div class="service-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                                <polyline points="14 2 14 8 20 8"></polyline>
+                                <line x1="16" y1="13" x2="8" y2="13"></line>
+                                <line x1="16" y1="17" x2="8" y2="17"></line>
+                                <polyline points="10 9 9 9 8 9"></polyline>
+                            </svg>
+                        </div>
+                        <h3 class="service-card-title">Performance Audits</h3>
+                        <p class="service-card-desc">Identifying bottlenecks in loading times, optimizing heavy assets, and improving Google Lighthouse scores.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Process Timeline Section -->
+        <section class="process-section" id="process">
+            <div class="container">
+                <div class="section-header text-center">
+                    <span class="section-subtitle scroll-reveal">OUR WORKFLOW</span>
+                    <h2 class="section-title scroll-reveal" id="processTitle">How we work with you</h2>
+                </div>
+
+                <div class="timeline-container">
+                    <div class="timeline-progress-bar" id="timelineProgress"></div>
+                    
+                    <!-- Step 1 -->
+                    <div class="timeline-step scroll-reveal" id="stepPlanning">
+                        <div class="timeline-dot">1</div>
+                        <div class="timeline-content">
+                            <span class="step-num">STAGE 01</span>
+                            <h3 class="step-title">Definition</h3>
+                            <p class="step-desc">We map out your product scope, define data models, and write technical specifications. No guesses.</p>
+                        </div>
+                    </div>
+
+                    <!-- Step 2 -->
+                    <div class="timeline-step scroll-reveal" id="stepDesign">
+                        <div class="timeline-dot">2</div>
+                        <div class="timeline-content">
+                            <span class="step-num">STAGE 02</span>
+                            <h3 class="step-title">Interface Design</h3>
+                            <p class="step-desc">We create visual designs in Figma. You get to see and click through the layout before we write code.</p>
+                        </div>
+                    </div>
+
+                    <!-- Step 3 -->
+                    <div class="timeline-step scroll-reveal" id="stepDevelopment">
+                        <div class="timeline-dot">3</div>
+                        <div class="timeline-content">
+                            <span class="step-num">STAGE 03</span>
+                            <h3 class="step-title">Development</h3>
+                            <p class="step-desc">Our team writes clean, commented code and runs regular check-ins on progress.</p>
+                        </div>
+                    </div>
+
+                    <!-- Step 4 -->
+                    <div class="timeline-step scroll-reveal" id="stepTesting">
+                        <div class="timeline-dot">4</div>
+                        <div class="timeline-content">
+                            <span class="step-num">STAGE 04</span>
+                            <h3 class="step-title">Optimization</h3>
+                            <p class="step-desc">We test the product on different viewports, optimize images, and review speed before launch.</p>
+                        </div>
+                    </div>
+
+                    <!-- Step 5 -->
+                    <div class="timeline-step scroll-reveal" id="stepDeployment">
+                        <div class="timeline-dot">5</div>
+                        <div class="timeline-content">
+                            <span class="step-num">STAGE 05</span>
+                            <h3 class="step-title">Deployment</h3>
+                            <p class="step-desc">We host the site on secure servers, set up domain routing, and establish automated error tracking.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials Section -->
+        <section class="testimonials-section" id="testimonials">
+            <div class="container">
+                <div class="section-header text-center">
+                    <span class="section-subtitle scroll-reveal">FEEDBACK</span>
+                    <h2 class="section-title scroll-reveal" id="testimonialsTitle">What our clients say</h2>
+                </div>
+
+                <div class="testimonials-slider-container scroll-reveal" id="testimonialsSliderContainer">
+                    <div class="testimonials-wrapper" id="testimonialsWrapper">
+                        <!-- Slide 1 -->
+                        <div class="testimonial-slide" data-index="0">
+                            <div class="testimonial-card">
+                                <div class="quote-icon">“</div>
+                                <p class="testimonial-quote">The team delivered exactly what they promised. Our dashboard is significantly faster now, and our clients have commented on how smooth the transitions are. They write very clean, documentable code.</p>
+                                <div class="client-profile">
+                                    <div class="client-avatar">
+                                        <span class="avatar-initials">ER</span>
+                                    </div>
+                                    <div class="client-info">
+                                        <h4 class="client-name">Elena Rostova</h4>
+                                        <span class="client-role">Lead Developer @ Solas Commerce</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Slide 2 -->
+                        <div class="testimonial-slide" data-index="1">
+                            <div class="testimonial-card">
+                                <div class="quote-icon">“</div>
+                                <p class="testimonial-quote">They helped us refactor our payment integration pipeline. The code is modular, and their communication was clear throughout. No fluff, just solid execution.</p>
+                                <div class="client-profile">
+                                    <div class="client-avatar">
+                                        <span class="avatar-initials">MV</span>
+                                    </div>
+                                    <div class="client-info">
+                                        <h4 class="client-name">Marcus Vance</h4>
+                                        <span class="client-role">Founder @ Arcane Tech</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Slide 3 -->
+                        <div class="testimonial-slide" data-index="2">
+                            <div class="testimonial-card">
+                                <div class="quote-icon">“</div>
+                                <p class="testimonial-quote">A boutique shop that actually knows design and performance. They didn't just build the Figma layouts—they optimized the actual page loading down to 0.8 seconds.</p>
+                                <div class="client-profile">
+                                    <div class="client-avatar">
+                                        <span class="avatar-initials">AH</span>
+                                    </div>
+                                    <div class="client-info">
+                                        <h4 class="client-name">Aria Harmon</h4>
+                                        <span class="client-role">Director @ Zenith Labs</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Slider Controls -->
+                    <div class="slider-controls">
+                        <button class="slider-btn prev-btn magnetic" id="sliderPrevBtn" aria-label="Previous testimonial">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <line x1="19" y1="12" x2="5" y2="12"></line>
+                                <polyline points="12 19 5 12 12 5"></polyline>
+                            </svg>
+                        </button>
+                        <div class="slider-dots" id="sliderDots">
+                            <span class="slider-dot active" data-slide="0"></span>
+                            <span class="slider-dot" data-slide="1"></span>
+                            <span class="slider-dot" data-slide="2"></span>
+                        </div>
+                        <button class="slider-btn next-btn magnetic" id="sliderNextBtn" aria-label="Next testimonial">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <line x1="5" y1="12" x2="19" y2="12"></line>
+                                <polyline points="12 5 19 12 12 19"></polyline>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="cta-section" id="contact">
+            <div class="cta-glow-container">
+                <div class="cta-glow-ball"></div>
+            </div>
+            <div class="container text-center">
+                <span class="cta-badge scroll-reveal">LET'S COLLABORATE</span>
+                <h2 class="cta-title scroll-reveal" id="ctaHeader">Have an app idea? <br><span class="text-gradient">Let's talk.</span></h2>
+                <p class="cta-description scroll-reveal" id="ctaSubheader">Tell us what you're building. We'll give you a direct technical assessment and a clear quote. No sales pitches.</p>
+                <div class="cta-actions scroll-reveal" id="ctaActions">
+                    <a href="mailto:hello@studio.design" class="btn btn-primary btn-lg magnetic" id="ctaBtnMail">Email hello@studio.design</a>
+                    <a href="#home" class="btn btn-secondary btn-outline btn-lg magnetic" id="ctaBtnTop">Back to Top</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="main-footer" id="mainFooter">
+        <div class="container footer-container">
+            <div class="footer-grid">
+                <!-- Branding -->
+                <div class="footer-brand">
+                    <a href="#home" class="footer-logo" id="footerLogoLink" aria-label="Go to top">
+                    <p class="footer-desc">A small, design-focused software agency. We build fast frontends and clean backend systems for modern companies.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link magnetic" aria-label="Twitter" id="footerTwitter">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></svg>
+                        </a>
+                        <a href="#" class="social-link magnetic" aria-label="LinkedIn" id="footerLinkedin">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+                                <rect x="2" y="9" width="4" height="12"></rect>
+                                <circle cx="4" cy="4" r="2"></circle>
+                            </svg>
+                        </a>
+                        <a href="#" class="social-link magnetic" aria-label="GitHub" id="footerGithub">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Quick Links -->
+                <div class="footer-links-col">
+                    <h4 class="footer-col-title">Navigation</h4>
+                    <ul class="footer-links">
+                        <li><a href="#home" id="footerNavHome">Home</a></li>
+                        <li><a href="#about" id="footerNavAbout">About</a></li>
+                        <li><a href="#projects" id="footerNavProjects">Projects</a></li>
+                        <li><a href="#services" id="footerNavServices">Services</a></li>
+                        <li><a href="#testimonials" id="footerNavTestimonials">Testimonials</a></li>
+                    </ul>
+                </div>
+
+                <!-- Services -->
+                <div class="footer-links-col">
+                    <h4 class="footer-col-title">Capabilities</h4>
+                    <ul class="footer-links">
+                        <li><a href="#services" id="footerServWeb">Frontend Engineering</a></li>
+                        <li><a href="#services" id="footerServUi">Product Design</a></li>
+                        <li><a href="#services" id="footerServBack">Backend Systems</a></li>
+                        <li><a href="#services" id="footerServApi">Third-Party Syncs</a></li>
+                        <li><a href="#services" id="footerServAi">AI Integrations</a></li>
+                    </ul>
+                </div>
+
+                <!-- Contacts -->
+                <div class="footer-links-col">
+                    <h4 class="footer-col-title">Contact</h4>
+                    <ul class="footer-contact-list">
+                        <li class="contact-item">
+                            <span class="contact-label">Email:</span>
+                            <a href="mailto:hello@studio.design" id="footerMail">hello@studio.design</a>
+                        </li>
+                        <li class="contact-item">
+                            <span class="contact-label">Studio:</span>
+                            <span class="contact-value" id="footerAddress">404 Grid Space, Suite 00, San Francisco, CA</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p class="copyright">&copy; 2026 Bespoke Software Labs LLC. All rights reserved.</p>
+                <div class="footer-bottom-links">
+                    <a href="#" id="footerPrivacy">Privacy Policy</a>
+                    <a href="#" id="footerTerms">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Main JavaScript -->
+    <script src="script.js"></script>
+</body>
+</html>
