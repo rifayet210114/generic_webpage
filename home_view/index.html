@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SWEETHOME — Luxury CGI Architectural Progression</title>
+  <meta name="description" content="Immersive 3D motion CGI scroll-driven experience detailing SweetHome's premium architectural vision. Driven by WebGL shaders and custom smooth scrolling.">
+  
+  <!-- Preconnecting Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+  <script type="module" crossorigin src="./assets/index-TaKuvbII.js"></script>
+  <link rel="stylesheet" crossorigin href="./assets/index-BXuXjwS9.css">
+</head>
+<body>
+  <!-- Noise Overlay for Cinematic Texture -->
+  <div class="noise-overlay" id="noiseOverlay"></div>
+
+  <!-- Custom Reactive Cursor -->
+  <div class="custom-cursor" id="customCursor">
+    <div class="cursor-dot"></div>
+    <div class="cursor-ring"></div>
+    <span class="cursor-text" id="cursorText"></span>
+  </div>
+  
+  <!-- Gate Transition Loader -->
+  <!-- <div class="loader-screen" id="gateLoaderScreen" style="display: none; opacity: 0; z-index: 1001;">
+    <div class="loader-content">
+      <div class="loader-title" style="font-size: 1.8rem; letter-spacing: 0.15em;">GATE SYSTEM</div>
+      <div class="loader-subtitle" id="gateLoaderSubtitle">INITIALIZING CORE ACCESS</div>
+      <div class="loader-bar-container">
+        <div class="loader-bar" id="gateLoaderBar"></div>
+      </div>
+      <div class="loader-percentage" id="gateLoaderPercentage">00%</div>
+    </div>
+  </div> -->
+
+  <!-- WebGL Canvas Container -->
+  <div class="webgl-container" id="webglContainer">
+    <canvas id="webglCanvas"></canvas>
+    <canvas id="cursorTrailCanvas"></canvas>
+  </div>
+
+  <!-- Smooth Scroll Container -->
+  <main id="scrollContainer">
+    <!-- Loader Page -->
+    <div class="loader-screen" id="loaderScreen">
+      <div class="loader-content">
+        <div class="loader-title">SWEETHOME</div>
+        <div class="loader-subtitle">CGI Engine Initializing</div>
+        <div class="loader-bar-container">
+          <div class="loader-bar" id="loaderBar"></div>
+        </div>
+        <div class="loader-percentage" id="loaderPercentage">00%</div>
+      </div>
+    </div>
+
+    <!-- Interface & Typography Overlays -->
+    <div class="scroll-sections">
+      
+      <!-- Section 1: Hero -->
+      <section class="section" id="heroSection">
+        <div class="grid-container">
+          <div class="hero-top-meta">
+            <span class="meta-tag font-mono">MODEL // SHADER_V1.0</span>
+            <span class="meta-tag font-mono">SWEETHOME PROJECT</span>
+          </div>
+          
+          <h1 class="hero-main-title split-text" id="heroTitle">
+            SWEETHOME<br>
+            <span class="accent-text">CHRONOS</span>
+          </h1>
+
+          <div class="hero-bottom">
+            <p class="hero-desc font-mono">
+              A spatial cinematic exploration mapping digital precision onto residential reality. Scroll to experience the structural synthesis.
+            </p>
+            <div class="scroll-indicator font-mono">
+              <span class="indicator-arrow">↓</span> SCROLL PROGRESS
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section 2: Narrative -->
+      <!-- <section class="section" id="narrativeSection">
+        <div class="grid-container flex-col justify-center">
+          <div class="section-badge font-mono">// 01 / CONCEPT</div>
+          
+          <div class="narrative-wrapper">
+            <h2 class="narrative-heading split-lines" id="narrativeHeading">
+              WE DEFINE ARCHITECTURAL HARMONY THROUGH IMMERSIVE SPATIAL DESIGN.
+            </h2>
+            <div class="narrative-body font-mono">
+              The Chronos prototype bridges the gap between simulated light and tactile environment. By utilizing precise 3D pre-render CGI sequences, the structural design reveals itself dynamically, morphing to adapt to the angle of light, material constraints, and temporal progression.
+            </div>
+          </div>
+        </div>
+      </section> -->
+
+      <!-- Section 3: Technical Features / Swiss Grid -->
+      <!-- <section class="section" id="featuresSection">
+        <div class="grid-container">
+          <div class="section-badge font-mono">// 02 / SPECIFICATIONS</div>
+          
+          <div class="swiss-grid">
+            <div class="grid-cell line-draw" id="cell1">
+              <div class="cell-num font-mono">01.</div>
+              <h3 class="cell-title">CGI SYNTHESIS</h3>
+              <p class="cell-text">High-fidelity WebGL texture mapped rendering preloads frames directly in CPU cache for instant response times.</p>
+            </div>
+            
+            <div class="grid-cell line-draw" id="cell2">
+              <div class="cell-num font-mono">02.</div>
+              <h3 class="cell-title">LIQUID SHADER</h3>
+              <p class="cell-text">A custom displacement map interacts with cursor movement, causing ripples in the optical rendering plane.</p>
+            </div>
+
+            <div class="grid-cell line-draw" id="cell3">
+              <div class="cell-num font-mono">03.</div>
+              <h3 class="cell-title">VELOCITY SPLIT</h3>
+              <p class="cell-text">Dynamic chromatic aberration shifts the red, green, and blue pixels relative to user's scrolling velocity.</p>
+            </div>
+
+            <div class="grid-cell line-draw" id="cell4">
+              <div class="cell-num font-mono">04.</div>
+              <h3 class="cell-title">ANTI-GRAVITY</h3>
+              <p class="cell-text">Lenis-driven custom physics curves enable weighted kinetic inertia, delivering premium weightless scrolling.</p>
+            </div>
+          </div>
+        </div>
+      </section> -->
+
+      <!-- Section 4: Call to Action -->
+      <section class="section" id="ctaSection">
+        <div class="grid-container flex-col justify-between">
+          <!-- <div class="section-badge font-mono">// 03 / CONTACT</div> -->
+          
+          <div class="cta-wrapper">
+            <!-- <h2 class="cta-heading" id="ctaTitle">ENTER THE STRUCTURE</h2> -->
+            <div class="cta-magnetic-container">
+              <button class="magnetic-button" id="ctaButton">
+                <span class="btn-text">INQUIRE NOW</span>
+                <svg class="btn-arrow" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </button>
+            </div>
+          </div>
+
+          <!-- <div class="footer-meta font-mono">
+            <span>© 2026 SWEETHOME STUDIO. ALL RIGHTS RESERVED.</span>
+            <span>COORDINATES: 23°42'N 90°22'E</span>
+          </div>
+        </div> -->
+      </section>
+
+    </div>
+  </main>
+
+  <!-- Gate Scroll Container (Hidden by default) -->
+  <div id="gateScrollContainer" style="display: none;">
+    <!-- Gate HUD & Overlays -->
+    <div class="gate-hud-overlay">
+      <div class="gate-grid-container">
+        <!-- Header -->
+        <div class="hero-top-meta gate-header">
+          <!-- <span class="meta-tag font-mono" id="gateMetaStatus">SYSTEM // ONLINE</span>
+          <span class="meta-tag font-mono">STRUCTURE CORE ACCESS</span> -->
+        </div>
+
+        <!-- Middle Text (Scroll Hint) -->
+        <div class="gate-middle-text">
+          <!-- <h2 class="gate-heading" id="gateTitle">GATEWAY UNLOCKED</h2> -->
+          <!-- <p class="font-mono" style="color: var(--color-accent);" id="gateInstructions">SCROLL DOWN TO PENETRATE THE CORE</p> -->
+        </div>
+
+        <!-- Footer / Back Button -->
+        <div class="footer-meta gate-footer">
+          <!-- <span>COORDINATES: 23°42'N 90°22'E</span> -->
+          <button class="magnetic-button" id="gateExitBtn">
+            <span class="btn-text">EXIT SYSTEM</span>
+            <svg class="btn-arrow" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="transform: rotate(180deg);">
+              <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Progress bar on right side -->
+  <div class="progress-bar-side" id="progressBarSide">
+    <div class="progress-fill" id="progressFill"></div>
+    <div class="progress-indicator-num font-mono" id="progressIndicatorNum">01</div>
+  </div>
+
+</body>
+</html>
