@@ -1,0 +1,90 @@
+# ============================================================
+#  Hostinger Apache Config — Apothecary Project
+#  Place this file inside public_html/
+# ============================================================
+
+# ---------- Gzip Compression (faster page load) ----------
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html
+  AddOutputFilterByType DEFLATE text/css
+  AddOutputFilterByType DEFLATE text/javascript
+  AddOutputFilterByType DEFLATE application/javascript
+  AddOutputFilterByType DEFLATE application/x-javascript
+  AddOutputFilterByType DEFLATE image/svg+xml
+  AddOutputFilterByType DEFLATE application/json
+</IfModule>
+
+# ---------- Browser Caching (assets cache হবে, reload কমবে) ----------
+<IfModule mod_expires.c>
+  ExpiresActive On
+
+  # Images & WebP
+  ExpiresByType image/webp             "access plus 1 year"
+  ExpiresByType image/jpeg             "access plus 1 year"
+  ExpiresByType image/png              "access plus 1 year"
+  ExpiresByType image/gif              "access plus 1 year"
+  ExpiresByType image/svg+xml         "access plus 1 year"
+  ExpiresByType image/x-icon          "access plus 1 year"
+
+  # Video
+  ExpiresByType video/mp4              "access plus 1 year"
+  ExpiresByType video/webm             "access plus 1 year"
+
+  # JS & CSS
+  ExpiresByType application/javascript "access plus 6 months"
+  ExpiresByType text/javascript        "access plus 6 months"
+  ExpiresByType text/css               "access plus 6 months"
+
+  # HTML (short cache so updates reflect fast)
+  ExpiresByType text/html              "access plus 1 hour"
+</IfModule>
+
+# ---------- Proper MIME Types (video গুলো browser এ চলবে) ----------
+<IfModule mod_mime.c>
+  AddType video/mp4          .mp4
+  AddType video/webm         .webm
+  AddType image/webp         .webp
+  AddType application/javascript .js
+  AddType text/css           .css
+</IfModule>
+
+# ---------- Security Headers ----------
+<IfModule mod_headers.c>
+  Header always set X-Content-Type-Options "nosniff"
+  Header always set X-Frame-Options "SAMEORIGIN"
+  Header always set X-XSS-Protection "1; mode=block"
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+
+  # Cache-Control for static assets
+  <FilesMatch "\.(mp4|webm|webp|jpeg|jpg|png|gif|ico|js|css)$">
+    Header set Cache-Control "public, max-age=31536000, immutable"
+  </FilesMatch>
+
+  # HTML should always revalidate
+  <FilesMatch "\.html$">
+    Header set Cache-Control "public, max-age=3600, must-revalidate"
+  </FilesMatch>
+</IfModule>
+
+# ---------- Video Range Request Support (scrubbing কাজ করবে) ----------
+<IfModule mod_headers.c>
+  <FilesMatch "\.(mp4|webm)$">
+    Header set Accept-Ranges "bytes"
+  </FilesMatch>
+</IfModule>
+
+# ---------- Directory Index ----------
+DirectoryIndex index.html
+
+# ---------- 404 Fallback to index.html (SPA-style) ----------
+ErrorDocument 404 /index.html
+
+# ---------- Remove www redirect (optional, uncomment if needed) ----------
+# RewriteEngine On
+# RewriteCond %{HTTP_HOST} ^www\.(.+)$ [NC]
+# RewriteRule ^ https://%1%{REQUEST_URI} [R=301,L]
+
+# ---------- Force HTTPS (uncomment after SSL certificate active) ----------
+# RewriteEngine On
+# RewriteCond %{HTTPS} off
+# RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]

@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Apothecary — The Secrets of Alchemica</title>
+  <meta name="description" content="Scroll to traverse the mystical forest, unlock the Rune Gate, and enter the Alchemist's Lab." />
+
+  <!-- DNS Prefetch for faster Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Preload critical assets for faster LCP -->
+  <link rel="preload" href="scrub-engine.js?v=11" as="script">
+  <link rel="preload" href="public/assets/starting/story1.webp" as="image">
+
+  <style>
+    /* Theme overrides matching the mystical, dark fantasy aesthetic */
+    :root, .sw-root {
+      --sw-bg: #090b11;
+      --sw-ink: #f1f3f9;
+      --sw-ink-soft: #a3aabf;
+      --sw-accent: #60a5fa; /* Fades between section accents */
+      --sw-font-display: 'Outfit', ui-rounded, sans-serif;
+      --sw-font-body: 'Inter', system-ui, sans-serif;
+    }
+
+    /* Prevent flash of unstyled background */
+    body {
+      background: #090b11;
+      margin: 0;
+    }
+
+    /* Custom scrollbar adjustments for a clean, hidden look */
+    ::-webkit-scrollbar {
+      width: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #090b11;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 999px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: rgba(255, 255, 255, 0.2);
+    }
+  </style>
+</head>
+<body>
+  <div id="top"></div>
+  <div id="world"></div>
+
+  <script src="scrub-engine.js?v=11"></script>
+  <script>
+    mountLetsScroll(document.getElementById('world'), {
+      brand: { name: 'APOTHECARY', href: '#top' },
+      hint: 'scroll to begin journey',
+      scrollFactor: 1.2, // Scroll speed: 1.2 vh per second of video
+      sections: [
+        {
+          id: 'forest',
+          label: 'Mystical Forest',
+          time: 1.0, // Peak time in the video
+          still: 'public/assets/starting/story1.webp',
+          accent: '#86efac', /* Greenish glow */
+          eyebrow: 'Chapter I — The Forest Path',
+          title: 'The Whispering Woods',
+          body: 'Traverse through the ancient paths where bioluminescent flora lights the way and raw magical energies pool in the shadows.',
+          tags: ['Mystical Flora', 'Bioluminescent', 'Mana Pool']
+        },
+        {
+          id: 'gate',
+          label: 'The Rune Gate',
+          time: 4.5, // Peak time in the video
+          still: 'public/assets/starting/story2.webp',
+          accent: '#60a5fa', /* Blueish glow */
+          eyebrow: 'Chapter II — The Monolith',
+          title: 'The Portal of Runes',
+          body: 'Stand before the monolithic stone gateway inscribed with age-old spells. Watch the glyphs align as the threshold opens.',
+          tags: ['Ancient Runes', 'Threshold', 'Arcane Energy']
+        },
+        {
+          id: 'finale',
+          label: 'Alchemist Lab',
+          time: 9.0, // Peak time in the video
+          still: 'public/assets/starting/story3.webp',
+          accent: '#c084fc', /* Purple/Magenta glow */
+          eyebrow: 'Chapter III — The Sanctuary',
+          title: 'The Alchemist\'s Lab',
+          body: 'Enter the sanctuary of forbidden knowledge. Brew glowing potions, consult ancient scrolls, and uncover the ultimate elixir.',
+          tags: ['Elixirs', 'Lost Scrolls', 'Grand Master'],
+          cta: {
+            primary: { label: 'Transmute', href: '#' },
+            secondary: { label: 'Read Codex', href: '#' }
+          }
+        }
+      ],
+      // Paths to the optimized video files
+      video: 'public/assets/starting/optimized_desktop.mp4',
+      videoMobile: 'public/assets/starting/optimized_mobile.mp4'
+    });
+  </script>
+</body>
+</html>
