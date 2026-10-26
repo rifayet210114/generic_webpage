@@ -46,7 +46,7 @@
                             <a href="rocket/" class="dropdown-item" id="dropProj4" target="_blank" rel="noopener noreferrer"> 
                                 <span class="drop-num">04</span> My 4th Project
                             </a>
-                            <a href="Coka_Cola/" class="dropdown-item" id="dropProj5 target="_blank" rel="noopener noreferrer">
+                            <a href="Coka_Cola/" class="dropdown-item" id="dropProj5" target="_blank" rel="noopener noreferrer">
                                 <span class="drop-num">05</span> My 5th Project
                             </a>
                         </div>
@@ -55,6 +55,7 @@
                     <li class="nav-item"><a href="#services" class="nav-link" id="navServices">Services</a></li>
                     <li class="nav-item"><a href="#about" class="nav-link" id="navAbout">About</a></li>
                     <li class="nav-item"><a href="#contact" class="nav-link" id="navContact">Contact</a></li>
+                    <li class="nav-item"><a href="#registration" class="nav-link" id="navRegistration">Registration Form</a></li>
                 </ul>
             </nav>
 
@@ -598,7 +599,107 @@
         </div>
     </footer>
 
+    <!-- Registration Modal (Option A: Modern Glassmorphic Popup) -->
+    <div class="reg-modal-overlay" id="regModalOverlay" aria-hidden="true" role="dialog" aria-labelledby="regModalTitle">
+        <div class="reg-modal-backdrop" id="regModalBackdrop"></div>
+        <div class="reg-modal-card" id="regModalCard">
+            <!-- Modal Close Button -->
+            <button class="reg-modal-close magnetic" id="regModalCloseBtn" aria-label="Close Registration Modal">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+            </button>
+
+            <!-- Modal Header -->
+            <div class="reg-modal-header">
+                <span class="reg-badge">REGISTRATION</span>
+                <h2 class="reg-modal-title" id="regModalTitle">Let's Build Something <span class="text-gradient">Extraordinary</span></h2>
+                <p class="reg-modal-subtitle">Submit your information below to register your project with us. We'll follow up with a technical assessment and proposal.</p>
+            </div>
+
+            <!-- Registration Form -->
+            <form class="reg-form" id="registrationForm" novalidate>
+                <!-- Name Row (2 Columns) -->
+                <div class="reg-form-row">
+                    <div class="reg-form-group">
+                        <label for="regFirstName" class="reg-label">First Name <span class="required">*</span></label>
+                        <div class="reg-input-wrapper">
+                            <input type="text" id="regFirstName" name="firstName" class="reg-input" placeholder="e.g. Alex" required autocomplete="given-name">
+                        </div>
+                    </div>
+                    <div class="reg-form-group">
+                        <label for="regLastName" class="reg-label">Last Name <span class="required">*</span></label>
+                        <div class="reg-input-wrapper">
+                            <input type="text" id="regLastName" name="lastName" class="reg-input" placeholder="e.g. Vance" required autocomplete="family-name">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contact Row (2 Columns) -->
+                <div class="reg-form-row">
+                    <div class="reg-form-group">
+                        <label for="regEmail" class="reg-label">Email Address <span class="required">*</span></label>
+                        <div class="reg-input-wrapper">
+                            <input type="email" id="regEmail" name="email" class="reg-input" placeholder="alex@company.com" required autocomplete="email">
+                        </div>
+                    </div>
+                    <div class="reg-form-group">
+                        <label for="regPhone" class="reg-label">Phone Number <span class="required">*</span></label>
+                        <div class="reg-input-wrapper">
+                            <input type="tel" id="regPhone" name="phone" class="reg-input" placeholder="+1 (555) 000-0000" required autocomplete="tel">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Service Selection -->
+                <div class="reg-form-group">
+                    <label for="regService" class="reg-label">Select Services <span class="required">*</span></label>
+                    <div class="reg-input-wrapper reg-select-wrapper">
+                        <select id="regService" name="service" class="reg-input reg-select" required>
+                            <option value="" disabled selected>Choose a web development service...</option>
+                            <option value="Custom Frontend Web Development (React / Next.js / Vue)">Custom Frontend Web Development (React / Next.js / Vue)</option>
+                            <option value="Full-Stack Web Application (Node / Python / Modern DB)">Full-Stack Web Application (Node / Python / Modern DB)</option>
+                            <option value="UI/UX Product Design & Interactive Systems">UI/UX Product Design & Interactive Systems</option>
+                            <option value="E-Commerce Platform & Checkout Solutions">E-Commerce Platform & Checkout Solutions</option>
+                            <option value="Website Redesign, Audit & Performance Boost">Website Redesign, Audit & Performance Boost</option>
+                            <option value="API Architecture & Cloud Integration">API Architecture & Cloud Integration</option>
+                        </select>
+                        <span class="reg-select-arrow">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="6 9 12 15 18 9"></polyline>
+                            </svg>
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Message Field -->
+                <div class="reg-form-group">
+                    <label for="regMessage" class="reg-label">Project Details / Message</label>
+                    <div class="reg-input-wrapper">
+                        <textarea id="regMessage" name="message" class="reg-input reg-textarea" rows="3" placeholder="Briefly describe your project scope, target timeline, or specific requirements..."></textarea>
+                    </div>
+                </div>
+
+                <!-- Status Alert Box -->
+                <div class="reg-status-box" id="regStatusBox" style="display: none;"></div>
+
+                <!-- Submit Button -->
+                <div class="reg-form-actions">
+                    <button type="submit" class="btn btn-primary btn-lg reg-submit-btn magnetic" id="regSubmitBtn">
+                        <span class="btn-text">Submit Registration</span>
+                        <svg class="btn-icon send-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <line x1="22" y1="2" x2="11" y2="13"></line>
+                            <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                        </svg>
+                        <span class="reg-spinner" id="regSpinner" style="display: none;"></span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
     <!-- Main JavaScript -->
-    <script src="script.js"></script>
+    <script src="script.js?v=2.2"></script>
 </body>
 </html>

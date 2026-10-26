@@ -16,6 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initMagneticButtons();
     initButtonRipple();
     initCardGlows();
+    initRegistrationModal();
 });
 
 /* ==========================================================================
@@ -34,6 +35,15 @@ function initCustomCursor() {
 
     // Show cursor on first mouse movement
     window.addEventListener('mousemove', (e) => {
+        if (document.body.classList.contains('reg-modal-open')) {
+            cursor.style.display = 'none';
+            follower.style.display = 'none';
+            return;
+        } else {
+            cursor.style.display = '';
+            follower.style.display = '';
+        }
+
         mouseX = e.clientX;
         mouseY = e.clientY;
         
@@ -459,3 +469,211 @@ function initCardGlows() {
         });
     });
 }
+
+/* ==========================================================================
+   REGISTRATION POPUP MODAL & GOOGLE APPS SCRIPT INTEGRATION
+   ========================================================================== */
+// IMPORTANT: Paste your deployed Google Apps Script Web App URL below
+const GOOGLE_SCRIPT_WEBAPP_URL = "https://script.google.com/macros/s/AKfycbypAKbTdheXPt854dCuDV-fa0mLeIEx80UoVGqMKpl27RT9tX8DISRcHw8kaSQktn9f/exec"; 
+
+function initRegistrationModal() {
+    const navBtn = document.getElementById('navRegistration');
+    const modalOverlay = document.getElementById('regModalOverlay');
+    const modalBackdrop = document.getElementById('regModalBackdrop');
+    const modalCloseBtn = document.getElementById('regModalCloseBtn');
+    const form = document.getElementById('registrationForm');
+    const statusBox = document.getElementById('regStatusBox');
+    const submitBtn = document.getElementById('regSubmitBtn');
+    const btnText = submitBtn ? submitBtn.querySelector('.btn-text') : null;
+    const sendIcon = submitBtn ? submitBtn.querySelector('.send-icon') : null;
+    const spinner = document.getElementById('regSpinner');
+
+    if (!modalOverlay || !form) return;
+
+    // Open Modal
+    function openModal(e) {
+        if (e) e.preventDefault();
+        modalOverlay.classList.add('is-active');
+        modalOverlay.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+        document.body.classList.add('reg-modal-open');
+
+        const customCursor = document.getElementById('customCursor');
+        const customFollower = document.getElementById('customCursorFollower');
+        if (customCursor) customCursor.style.display = 'none';
+        if (customFollower) customFollower.style.display = 'none';
+
+        // Close mobile nav menu if open
+        const navMenu = document.getElementById('navMenu');
+        const hamburgerBtn = document.getElementById('hamburgerBtn');
+        if (navMenu && navMenu.classList.contains('active')) {
+            navMenu.classList.remove('active');
+            if (hamburgerBtn) hamburgerBtn.classList.remove('active');
+        }
+
+        // Focus first field
+        setTimeout(() => {
+            const firstNameInput = document.getElementById('regFirstName');
+            if (firstNameInput) firstNameInput.focus();
+        }, 150);
+    }
+
+    // Close Modal
+    function closeModal() {
+        modalOverlay.classList.remove('is-active');
+        modalOverlay.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = '';
+        document.body.classList.remove('reg-modal-open');
+
+        const customCursor = document.getElementById('customCursor');
+        const customFollower = document.getElementById('customCursorFollower');
+        if (customCursor) customCursor.style.display = '';
+        if (customFollower) customFollower.style.display = '';
+    }
+
+    // Trigger open on nav link click
+    if (navBtn) {
+        navBtn.addEventListener('click', openModal);
+    }
+
+    // Close events
+    if (modalCloseBtn) {
+        modalCloseBtn.addEventListener('click', closeModal);
+    }
+
+    if (modalBackdrop) {
+        modalBackdrop.addEventListener('click', closeModal);
+    }
+
+    // Close on Escape key
+    window.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && modalOverlay.classList.contains('is-active')) {
+            closeModal();
+        }
+    });
+
+    // Helper: Show status banner
+    function showStatus(type, message) {
+        if (!statusBox) return;
+        statusBox.className = `reg-status-box status-${type}`;
+        statusBox.innerHTML = message;
+        statusBox.style.display = 'block';
+        try {
+            statusBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        } catch (e) {}
+    }
+
+    // Helper: Hide status banner
+    function hideStatus() {
+        if (!statusBox) return;
+        statusBox.style.display = 'none';
+        statusBox.innerHTML = '';
+    }
+
+    // Form submission
+    form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        hideStatus();
+
+        // Retrieve field values
+        const firstName = document.getElementById('regFirstName')?.value.trim();
+        const lastName = document.getElementById('regLastName')?.value.trim();
+        const email = document.getElementById('regEmail')?.value.trim();
+        const phone = document.getElementById('regPhone')?.value.trim();
+        const service = document.getElementById('regService')?.value;
+        const message = document.getElementById('regMessage')?.value.trim();
+
+        // Reset previous invalid states
+        form.querySelectorAll('.reg-input').forEach(input => input.classList.remove('is-invalid'));
+
+        // Client-side validations
+        if (!firstName) {
+            document.getElementById('regFirstName')?.classList.add('is-invalid');
+            showStatus('error', '⚠️ Please enter your first name.');
+            document.getElementById('regFirstName')?.focus();
+            return;
+        }
+
+        if (!lastName) {
+            document.getElementById('regLastName')?.classList.add('is-invalid');
+            showStatus('error', '⚠️ Please enter your last name.');
+            document.getElementById('regLastName')?.focus();
+            return;
+        }
+
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!email || !emailRegex.test(email)) {
+            document.getElementById('regEmail')?.classList.add('is-invalid');
+            showStatus('error', '⚠️ Please enter a valid email address.');
+            document.getElementById('regEmail')?.focus();
+            return;
+        }
+
+        if (!phone || phone.length < 6) {
+            document.getElementById('regPhone')?.classList.add('is-invalid');
+            showStatus('error', '⚠️ Please enter a valid phone number.');
+            document.getElementById('regPhone')?.focus();
+            return;
+        }
+
+        if (!service) {
+            document.getElementById('regService')?.classList.add('is-invalid');
+            showStatus('error', '⚠️ Please select a web development service.');
+            document.getElementById('regService')?.focus();
+            return;
+        }
+
+        // Payload data to transmit
+        const formData = {
+            firstName,
+            lastName,
+            email,
+            phone,
+            service,
+            message: message || 'N/A',
+            submittedAt: new Date().toLocaleString()
+        };
+
+        // UI Loading State
+        submitBtn.disabled = true;
+        if (btnText) btnText.textContent = 'Submitting Registration...';
+        if (sendIcon) sendIcon.style.display = 'none';
+        if (spinner) spinner.style.display = 'inline-block';
+        showStatus('loading', '⏳ Submitting your information, please wait...');
+
+        try {
+            console.log('Submitting registration to Google Apps Script:', GOOGLE_SCRIPT_WEBAPP_URL);
+            console.log('Registration Payload:', formData);
+
+            // Live Google Apps Script submission
+            // Using mode: 'no-cors' with standard 'text/plain' safelisted header
+            await fetch(GOOGLE_SCRIPT_WEBAPP_URL, {
+                method: 'POST',
+                mode: 'no-cors',
+                headers: {
+                    'Content-Type': 'text/plain'
+                },
+                body: JSON.stringify(formData)
+            });
+
+            console.log('Submission sent successfully!');
+            showStatus('success', '🎉 <strong>Registration Submitted!</strong><br>We have received your details and sent an email confirmation. We will reach out shortly.');
+            form.reset();
+
+            setTimeout(() => {
+                closeModal();
+                hideStatus();
+            }, 4000);
+        } catch (error) {
+            console.error('Registration submission error:', error);
+            showStatus('error', '❌ Could not submit registration. Please check your internet connection or try again later.');
+        } finally {
+            submitBtn.disabled = false;
+            if (btnText) btnText.textContent = 'Submit Registration';
+            if (sendIcon) sendIcon.style.display = 'inline-block';
+            if (spinner) spinner.style.display = 'none';
+        }
+    }
+    );
+}
+
